@@ -1,6 +1,6 @@
 {
   "name": "tcc-chatterbox",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Discord bot for the TCC Gamerforge Discord server",
   "main": "index.js",
   "scripts": {
