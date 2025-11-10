@@ -1,4 +1,4 @@
-# TCC Chatterbox Discord Bot
+# TCC AetherMind Discord Bot
 
 A custom Discord bot powered by Ollama Generative AI and built for the TCC Gamerforge private Discord server. This bot is designed specifically for our community and is not intended for public use or distribution.
 

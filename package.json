@@ -1,6 +1,6 @@
 {
-  "name": "tcc-chatterbox",
-  "version": "1.0.5",
+  "name": "tcc-aethermind",
+  "version": "1.0.6",
   "description": "A Discord bot for the TCC Gamerforge Discord server",
   "main": "index.js",
   "scripts": {
