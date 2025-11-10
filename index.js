@@ -149,6 +149,18 @@ if (fs.existsSync(commandsPath)) {
 // When the client is ready, run this code (only once)
 client.once(Events.ClientReady, readyClient => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+    
+    // Set bot presence
+    readyClient.user.setPresence({
+        activities: [
+            {
+                name: 'Observing TCC Gamerforge',
+                type: 3 // ActivityType.Watching
+            }
+        ],
+        status: 'online'
+    });
+    
     console.log('Bot is online and ready!');
     console.log('---');
     console.log('Manual Message Commands:');
