@@ -142,17 +142,20 @@ async function processAIRequest(messageOrInteraction, userMessage, username, use
         const conversation = getThreadConversation(threadId);
         console.log(`Thread has ${conversation.length - 1} previous messages`);
         
-        // Add user's message to conversation history with username
-        addToConversation(threadId, 'user', userMessage, username);
+        // Create the current message for the AI request (with username prefix)
+        const currentMessage = { 
+            role: 'user', 
+            content: `${username}: ${userMessage}` 
+        };
         
         // Generate response using Ollama with full conversation context
         const response = await ollama.chat({
             model: process.env.OLLAMA_MODEL || 'llama3.2',
-            messages: conversation.concat([{ 
-                role: 'user', 
-                content: `${username}: ${userMessage}` 
-            }]),
+            messages: conversation.concat([currentMessage]),
         });
+        
+        // Add user's message to conversation history AFTER getting AI response
+        addToConversation(threadId, 'user', userMessage, username);
 
         const aiResponse = response.message.content;
         
