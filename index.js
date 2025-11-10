@@ -159,25 +159,10 @@ async function processAIRequest(messageOrInteraction, userMessage, username, use
         // Add AI's response to conversation history
         addToConversation(threadId, 'assistant', aiResponse);
         
-        // Handle Discord's 2000 character limit and format response
-        let finalResponse;
-        if (isSlashCommand) {
-            // For slash commands, show the original question so others can see it
-            const questionHeader = `**${username} said:** ${userMessage}\n\n`;
-            const availableSpace = 2000 - questionHeader.length;
-            
-            if (aiResponse.length > availableSpace) {
-                finalResponse = questionHeader + aiResponse.substring(0, availableSpace - 3) + '...';
-            } else {
-                finalResponse = questionHeader + aiResponse;
-            }
-        } else {
-            // For regular replies, just use the AI response
-            if (aiResponse.length > 2000) {
-                finalResponse = aiResponse.substring(0, 1997) + '...';
-            } else {
-                finalResponse = aiResponse;
-            }
+        // Handle Discord's 2000 character limit
+        let finalResponse = aiResponse;
+        if (aiResponse.length > 2000) {
+            finalResponse = aiResponse.substring(0, 1997) + '...';
         }
         
         // Send response based on type (slash command or regular message)
